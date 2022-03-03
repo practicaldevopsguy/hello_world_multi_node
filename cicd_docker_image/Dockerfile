@@ -18,11 +18,21 @@ RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan 192.168.1.104 >> /root/.ssh/known_hosts
 RUN chmod 600 /root/.ssh/known_hosts
 
+# TODO invalidate cache
+RUN date > /root/tmp_variable
+RUN VARIABLE=$(cat /root/tmp_variable)
+RUN rm /root/tmp_variable
+
 # build
 
 WORKDIR /work
 
 RUN git clone ssh://cicd@192.168.1.104:/DATA/git/hello_world
+WORKDIR /work/hello_world
+RUN git pull
+
+
+
 
 
 
