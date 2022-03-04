@@ -23,9 +23,10 @@ RUN chmod 600 /root/.ssh/known_hosts
 # build
 WORKDIR /work
 ADD build.sh /work/build.sh
+RUN chmod 755 /work/build.sh
 
-RUN ./build.sh
-
+#ENTRYPOINT /bin/bash build.sh
+RUN /bin/bash build.sh
 
 #RUN git clone ssh://cicd@192.168.1.104:/DATA/git/hello_world
 #WORKDIR /work/hello_world
