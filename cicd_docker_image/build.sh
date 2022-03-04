@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-[ -f "/work/build.lock" ] && echo "Build is running, exiting... " ; exit 1
+[ -f "/work/build.lock" ] && echo "Build is running, exiting... " ; exit 0
 touch /work/build.lock
 
 echo $(date +"%Y-%m-%d %T") - Build script started
