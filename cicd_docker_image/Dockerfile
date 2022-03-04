@@ -23,10 +23,10 @@ WORKDIR /work
 ADD build.sh /work/build.sh
 
 # first run
-RUN /bin/bash /work/build.sh >> /work/build.log
+RUN /bin/bash /work/build.sh >> /work/build.log 2>&1
 
 # schedule build to cron
-RUN (crontab -l ; echo "* * * * * /bin/bash /work/build.sh >> /work/build.log") | crontab
+RUN (echo "* * * * * /bin/bash /work/build.sh >> /work/build.log 2>&1") | crontab
 ENTRYPOINT cron && tail -f /work/build.log
 
 
