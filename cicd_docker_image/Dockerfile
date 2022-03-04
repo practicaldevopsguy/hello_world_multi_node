@@ -4,7 +4,7 @@ FROM python:3.10-slim-buster
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y curl git
+    DEBIAN_FRONTEND=noninteractive apt-get install -y curl git cron
 
 # prepare CICD account
 
@@ -18,14 +18,13 @@ RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan 192.168.1.104 >> /root/.ssh/known_hosts
 RUN chmod 600 /root/.ssh/known_hosts
 
-# TODO invalidate cache, build.sh???
-
 # build
 WORKDIR /work
 ADD build.sh /work/build.sh
-RUN chmod 755 /work/build.sh
 
-ENTRYPOINT /bin/bash build.sh
+RUN (crontab -l ; echo "* * * * * /bin/bash /work/build.sh") | crontab
+
+#ENTRYPOINT /bin/bash build.sh
 #RUN /bin/bash build.sh <-- use this for terminal access
 
 #RUN git clone ssh://cicd@192.168.1.104:/DATA/git/hello_world
