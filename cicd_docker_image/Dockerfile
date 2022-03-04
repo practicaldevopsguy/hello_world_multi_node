@@ -26,7 +26,7 @@ ADD build.sh /work/build.sh
 RUN /bin/bash /work/build.sh >> /work/build.log 2>&1
 
 # schedule build to cron
-RUN (echo "* * * * * /bin/bash /work/build.sh >> /work/build.log 2>&1") | crontab
+RUN (echo "*/10 * * * * /bin/bash /work/build.sh >> /work/build.log 2>&1") | crontab
 ENTRYPOINT cron && tail -f /work/build.log
 
 
