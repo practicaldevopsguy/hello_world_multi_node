@@ -22,8 +22,13 @@ RUN chmod 600 /root/.ssh/known_hosts
 WORKDIR /work
 ADD build.sh /work/build.sh
 
+# first run
+RUN /bin/bash /work/build.sh >> /work/build.log
+
+# schedule build to cron
 RUN (crontab -l ; echo "* * * * * /bin/bash /work/build.sh >> /work/build.log") | crontab
-CMD cron && tail -f /work/build.log
+ENTRYPOINT cron && tail -f /work/build.log
+
 
 
 #ENTRYPOINT /bin/bash build.sh

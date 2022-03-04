@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
-date
-echo hello from build script
-echo hello2 from build script
+date +"%Y-%m-%d %T"
+echo Build script started
+
 
 cd /work
 
