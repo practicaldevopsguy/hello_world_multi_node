@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+date
 echo hello from build script
 echo hello2 from build script
 

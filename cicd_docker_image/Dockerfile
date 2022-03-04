@@ -22,7 +22,9 @@ RUN chmod 600 /root/.ssh/known_hosts
 WORKDIR /work
 ADD build.sh /work/build.sh
 
-RUN (crontab -l ; echo "* * * * * /bin/bash /work/build.sh") | crontab
+RUN (crontab -l ; echo "* * * * * /bin/bash /work/build.sh >> /work/build.log") | crontab
+CMD cron
+
 
 #ENTRYPOINT /bin/bash build.sh
 #RUN /bin/bash build.sh <-- use this for terminal access
