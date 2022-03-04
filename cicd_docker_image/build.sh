@@ -11,8 +11,9 @@ touch /work/build.lock
 echo $(date +"%Y-%m-%d %T") - Build script started
 
 # refresh source from git
-[ ! -d "/work/$PROJECT" ] && cd /work && git clone ssh://cicd@192.168.1.104:/DATA/git/$PROJECT
 [ -d "/work/$PROJECT" ] && cd /work/$PROJECT && git pull
+[ ! -d "/work/$PROJECT" ] && cd /work && git clone ssh://cicd@192.168.1.104:/DATA/git/$PROJECT
+
 
 echo $(date +"%Y-%m-%d %T") - DONE
 echo
