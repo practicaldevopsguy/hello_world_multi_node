@@ -23,7 +23,7 @@ WORKDIR /work
 ADD build.sh /work/build.sh
 
 RUN (crontab -l ; echo "* * * * * /bin/bash /work/build.sh") | crontab
-ENTRYPOINT cron
+RUN cron -f
 
 
 #ENTRYPOINT /bin/bash build.sh
