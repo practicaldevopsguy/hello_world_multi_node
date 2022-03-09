@@ -18,6 +18,9 @@ echo $(date +"%Y-%m-%d %T") - Build script started
 if [ $? -eq 0 ]
 then
 	echo $(date +"%Y-%m-%d %T") -- Start building
+	cd /work
+	docker build -t hello .
+
 
 fi
 
