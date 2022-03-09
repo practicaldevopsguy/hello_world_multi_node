@@ -3,8 +3,11 @@ FROM python:3.10-slim-buster
 # prepare OS
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y curl git cron
+
+RUN curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+    echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list \
+    DEBIAN_FRONTEND=noninteractive apt-get update -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y curl git cron docker kubectl
 
 # prepare CICD account
 
@@ -28,17 +31,6 @@ RUN /bin/bash /work/build.sh >> /work/build.log 2>&1
 # schedule build to cron
 RUN (echo "* * * * * /bin/bash /work/build.sh >> /work/build.log 2>&1") | crontab
 ENTRYPOINT cron && tail -f /work/build.log
-
-
-
-#ENTRYPOINT /bin/bash build.sh
-#RUN /bin/bash build.sh <-- use this for terminal access
-
-#RUN git clone ssh://cicd@192.168.1.104:/DATA/git/hello_world
-#WORKDIR /work/hello_world
-#RUN git pull
-
-
 
 
 
