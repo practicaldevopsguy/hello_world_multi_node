@@ -18,8 +18,6 @@ RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan 192.168.1.104 >> /root/.ssh/known_hosts
 RUN chmod 600 /root/.ssh/known_hosts
 
-#CMD docker run -v /var/run/docker.sock:/var/run/docker.sock -ti docker
-
 # build
 WORKDIR /work
 ADD build.sh /work/build.sh
