@@ -22,6 +22,8 @@ then
 	cd /work/$PROJECT
 	echo $(date +"%Y-%m-%d %T") --- building docker image
 	docker build -t $PROJECT .
+	docker run $PROJECT
+
 
 rm /work/do_build
 fi
