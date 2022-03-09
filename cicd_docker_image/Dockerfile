@@ -19,7 +19,7 @@ RUN ssh-keyscan 192.168.1.104 >> /root/.ssh/known_hosts
 RUN chmod 600 /root/.ssh/known_hosts
 
 # prepare kubernetes config
-#ADD config /root/.kube/config
+ADD config /root/.kube/config
 
 # build
 WORKDIR /work
