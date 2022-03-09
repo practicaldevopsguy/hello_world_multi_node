@@ -22,7 +22,7 @@ then
 	cd /work/$PROJECT
 	echo $(date +"%Y-%m-%d %T") --- building docker image
 	docker build -t practicaldevopsguy/$PROJECT .
-	docker tag practicaldevopsguy/$PROJECTinvestment_advisor:latest 192.168.1.104:5000/practicaldevopsguy/$PROJECT:latest
+	docker tag practicaldevopsguy/$PROJECT:latest 192.168.1.104:5000/practicaldevopsguy/$PROJECT:latest
 	docker push 192.168.1.104:5000/practicaldevopsguy/$PROJECT:latest
 	echo $(date +"%Y-%m-%d %T") --- run docker image
 	docker run practicaldevopsguy/$PROJECT:latest
