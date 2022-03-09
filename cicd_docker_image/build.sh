@@ -27,6 +27,8 @@ then
 	docker run practicaldevopsguy/$PROJECT:latest
 	echo $(date +"%Y-%m-%d %T") --- check kubernetes nodes
   kubectl get nodes
+  echo $(date +"%Y-%m-%d %T") --- deploy kubernetes pod
+  kubectl replace -f deployment.yaml --force
 
 rm /work/do_build
 fi
