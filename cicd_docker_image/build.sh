@@ -23,7 +23,7 @@ then
 	echo $(date +"%Y-%m-%d %T") --- building docker image
 	docker build -t practicaldevopsguy/$PROJECT .
 	echo $(date +"%Y-%m-%d %T") --- run docker image
-	docker run practicaldevopsguy/$PROJECT
+	docker run practicaldevopsguy/$PROJECT:latest
 	echo $(date +"%Y-%m-%d %T") --- check kubernetes (nodes)
   kubectl get nodes
 
