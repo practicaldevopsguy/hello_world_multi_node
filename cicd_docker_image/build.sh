@@ -21,7 +21,7 @@ then
 	echo $(date +"%Y-%m-%d %T") -- Start building
 	cd /work/$PROJECT
 	echo $(date +"%Y-%m-%d %T") --- building docker image
-	docker login -u="cicd" -p="cicd"
+	docker login -u="cicd" -p="cicd" 192.168.1.104:5000
 	docker build -t practicaldevopsguy/$PROJECT .
 	docker tag practicaldevopsguy/$PROJECT:latest 192.168.1.104:5000/practicaldevopsguy/$PROJECT:latest
 	docker push 192.168.1.104:5000/practicaldevopsguy/$PROJECT:latest
