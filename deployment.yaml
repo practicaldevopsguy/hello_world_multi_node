@@ -9,6 +9,6 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: 192.168.1.104:5000/practicaldevopsguy/hello_world:latest
+        image: 127.0.0.1:5000/practicaldevopsguy/hello_world:latest
         imagePullPolicy: IfNotPresent
       restartPolicy: Never
