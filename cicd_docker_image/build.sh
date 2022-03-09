@@ -19,6 +19,7 @@ if [ $? -eq 0 ]
 then
 	echo $(date +"%Y-%m-%d %T") -- Start building
 	cd /work
+	echo $(date +"%Y-%m-%d %T") --- building docker image
 	docker build -t hello .
 
 
