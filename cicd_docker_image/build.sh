@@ -11,8 +11,8 @@ touch /work/build.lock
 echo $(date +"%Y-%m-%d %T") - Build script started
 
 # refresh source from git
-[ -d "/work/$PROJECT" ] && cd /work/$PROJECT && git pull | grep -v "Already up to date"
 [ ! -d "/work/$PROJECT" ] && cd /work && git clone ssh://cicd@192.168.1.104:/DATA/git/$PROJECT
+[ -d "/work/$PROJECT" ] && cd /work/$PROJECT && git pull | grep -v "Already up to date"
 
 # build if code is just cloned or updated
 if [ $? -eq 0 ]
