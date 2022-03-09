@@ -17,7 +17,7 @@ echo $(date +"%Y-%m-%d %T") - Build script started
 # build if code is just cloned or updated
 if [ $? -eq 0 ]
 then
-	echo $(date +"%Y-%m-%d %T") - Start building ...
+	echo $(date +"%Y-%m-%d %T") -- Start building
 
 fi
 
