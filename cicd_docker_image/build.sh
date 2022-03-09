@@ -25,7 +25,7 @@ then
 	#docker build -t $PROJECT .
 	echo $(date +"%Y-%m-%d %T") --- run docker image
 	#docker run practicaldevopsguy/$PROJECT:latest
-	echo $(date +"%Y-%m-%d %T") --- check kubernetes (nodes)
+	echo $(date +"%Y-%m-%d %T") --- check kubernetes nodes
   #kubectl get nodes
 
 rm /work/do_build

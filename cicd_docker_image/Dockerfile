@@ -26,7 +26,8 @@ WORKDIR /work
 ADD build.sh /work/build.sh
 
 # first run
-RUN /bin/bash /work/build.sh >> /work/build.log 2>&1
+#RUN /bin/bash /work/build.sh >> /work/build.log 2>&1
+RUN echo "CICD container deployed" >> /work/build.log
 
 # schedule build to cron
 RUN (echo "* * * * * /bin/bash /work/build.sh >> /work/build.log 2>&1") | crontab
