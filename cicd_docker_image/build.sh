@@ -11,18 +11,19 @@ touch /work/build.lock
 echo $(date +"%Y-%m-%d %T") - Build script started
 
 # refresh source from git
-[ ! -d "/work/$PROJECT" ] && cd /work && git clone ssh://cicd@192.168.1.104:/DATA/git/$PROJECT
-[ -d "/work/$PROJECT" ] && cd /work/$PROJECT && git pull | grep -v "Already up to date"
+[ ! -d "/work/$PROJECT" ] && cd /work && git clone ssh://cicd@192.168.1.104:/DATA/git/$PROJECT && touch /work/do_build
+[ -d "/work/$PROJECT" ] && cd /work/$PROJECT && git pull | grep -v "Already up to date" && touch /work/do_build
 
 # build if code is just cloned or updated
-if [ $? -eq 0 ]
+if [ -f "/work/do_build" ]
 then
+
 	echo $(date +"%Y-%m-%d %T") -- Start building
-	cd /work
+	cd /work/$PROJECT
 	echo $(date +"%Y-%m-%d %T") --- building docker image
-	docker build -t hello .
+	docker build -t $PROJECT .
 
-
+rm /work/do_build
 fi
 
 echo $(date +"%Y-%m-%d %T") - DONE
