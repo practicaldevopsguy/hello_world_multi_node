@@ -1,14 +1,20 @@
-apiVersion: batch/v1
-kind: Job
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: hello-world-multi-node
+  labels:
+    app: hello-world-multi-node
 spec:
+  selector:
+    matchLabels:
+      app: hello-world-multi-node
+  replicas: 2
   template:
     metadata:
-      name: hello-world-multi-node-pod
+      labels:
+        app: hello-world-multi-node
     spec:
       containers:
-      - name: hello-world
-        image: 127.0.0.1:5000/practicaldevopsguy/hello_world_multi_node:latest
-        imagePullPolicy: IfNotPresent
-      restartPolicy: Never
+        - name: hello-world-multi-node
+          image: 127.0.0.1:5000/practicaldevopsguy/hello_world_multi_node:latest
+          imagePullPolicy: Always
