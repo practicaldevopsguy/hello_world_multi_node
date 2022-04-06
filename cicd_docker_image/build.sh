@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # --------------------------
-PROJECT=hello_world
+PROJECT=hello_world_multi_node
 # --------------------------
 
 # check if the build process is locked, if not, lock it
@@ -25,8 +25,6 @@ then
 	docker build -t practicaldevopsguy/$PROJECT .
 	docker tag practicaldevopsguy/$PROJECT:latest 192.168.1.104:5000/practicaldevopsguy/$PROJECT:latest
 	docker push 192.168.1.104:5000/practicaldevopsguy/$PROJECT:latest
-	echo $(date +"%Y-%m-%d %T") --- run docker image
-	docker run practicaldevopsguy/$PROJECT:latest
 	echo $(date +"%Y-%m-%d %T") --- check kubernetes nodes
   kubectl get nodes
   echo $(date +"%Y-%m-%d %T") --- deploy kubernetes pod
