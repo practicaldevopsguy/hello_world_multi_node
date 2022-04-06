@@ -1,11 +1,11 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: hello-world
+  name: hello-world-multi-node
 spec:
   template:
     metadata:
-      name: hello-world-pod
+      name: hello-world-multi-node-pod
     spec:
       containers:
       - name: hello-world
